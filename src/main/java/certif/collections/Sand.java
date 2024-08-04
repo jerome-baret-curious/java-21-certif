@@ -67,22 +67,30 @@ public class Sand {
         Collections.reverse(modifiableList);
         System.out.println(modifiableList); // [hy, gf]
 
+        SequencedCollection<String> list = new ArrayList<>();
+        list.addFirst("a");
+        System.out.println(list.getFirst());
+        System.out.println(list.removeFirst());
+
         return unmodifiableList;
     }
 
-    public static void set(List<String> list) {
+    public static void set(SequencedCollection<String> list) {
         Set<String> modifiableSet = new HashSet<>();
         modifiableSet.addAll(list);
-        System.out.println(modifiableSet);
+        System.out.println(modifiableSet); //[kk, ll, zff]
         System.out.println("disjoint "+Collections.disjoint(modifiableSet, list));
 
         SortedSet<String> sortedSet = new TreeSet<>(modifiableSet);
         System.out.println(sortedSet.first());
         System.out.println(sortedSet.comparator());//null because natural order
         System.out.println(sortedSet.tailSet("ll"));//[ll, zff]
+
+        SequencedSet<String> sequencedSet = new TreeSet<>(modifiableSet);
+        System.out.println(sequencedSet.reversed()); //[zff, ll, kk]
     }
 
-    public static void deque(List<String> list) {
+    public static void deque(SequencedCollection<String> list) {
         // Queue methods on Deque are FIFO
         Deque<String> modifiableDeque = new LinkedList<>(list);
         System.out.println(modifiableDeque.offerFirst("y"));
@@ -112,5 +120,19 @@ public class Sand {
         System.out.println(sortedMap);//{fgf=zerzrz, ioio=ipoi, yrtfg=nbnv}
         System.out.println(sortedMap.firstKey());// fgf
         System.out.println(sortedMap.headMap("ioio"));//{fgf=zerzrz}
+
+        SequencedMap<String, String> sequencedMap = new TreeMap<>();
+        sequencedMap.put("ioio", "ipoi");
+        sequencedMap.put("yrtfg", "hfghfg");
+        System.out.println(sequencedMap.merge("fgf", "zerzrz", (oldValue, value) -> "ert"));
+        System.out.println(sequencedMap.merge("yrtfg", "rter", (oldValue, value) -> "nbnv"));
+        System.out.println(sequencedMap);//{fgf=zerzrz, ioio=ipoi, yrtfg=nbnv}
+        System.out.println(sequencedMap.firstEntry());// fgf=zerzrz
+        System.out.println(sequencedMap.sequencedKeySet());//[fgf, ioio, yrtfg]
+        System.out.println(sequencedMap.reversed());//{yrtfg=nbnv, ioio=ipoi, fgf=zerzrz}
+        System.out.println(sequencedMap.sequencedEntrySet());//[fgf=zerzrz, ioio=ipoi, yrtfg=nbnv]
+        System.out.println(sequencedMap.pollFirstEntry());// fgf=zerzrz
+        System.out.println(sequencedMap);//{ioio=ipoi, yrtfg=nbnv}
+        //System.out.println(sequencedMap.putLast("uyt", "pom"));//throws UnsupportedOperationException
     }
 }
