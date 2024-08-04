@@ -29,9 +29,9 @@ public class Sand {
 
         int a = 1;
         int b = ~a; // -2
-        System.out.println(b);
+        System.out.println("b" + b);
         int c = a ^ b; // < 0
-        System.out.println(c);
+        System.out.println("c" + c);
 
         var tientien = 0b01111111_11111111_11111111_11111111; //Integer.MAX_VALUE
         System.out.println(tientien);
@@ -41,6 +41,9 @@ public class Sand {
             int total = 60;
         };
         System.out.println("name = " + anonObj.name + ", total = " + anonObj.total);
+
+        mathAPI();
+        strings();
     }
 
     public static void mathAPI() {

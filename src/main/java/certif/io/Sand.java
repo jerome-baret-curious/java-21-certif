@@ -59,7 +59,7 @@ public class Sand {
         ByteArrayInputStream bais = new ByteArrayInputStream(baos2.toByteArray());
         try (ObjectInputStream ois = new ObjectInputStream(bais)) {
             Oui oui = (Oui)ois.readObject();
-            System.out.println(oui); // Oui{j=10.0, i=5}
+            System.out.println(oui); // Oui{j=10.0, i=5} (Reponse non Serializable)
         } catch (IOException | ClassNotFoundException e) {
             System.err.println(e.getMessage());
         }

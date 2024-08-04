@@ -30,6 +30,14 @@ public class Sand {
 
         System.out.println(Rates.NORMAL);
         System.out.println(Rates.HIFI);
+
+        Rec1 rec1 = new Rec1(4, null);
+        if (rec1 instanceof Rec1(var x, TheRec(String s))) {// no match
+            System.out.println(x + " " + s);
+        }
+        if (rec1 instanceof Rec1(var x, TheRec t)) {// match
+            System.out.println(x + " " + t);
+        }
     }
 
     Hello french = new Hello() { // could have been a class to extend
@@ -126,6 +134,9 @@ public class Sand {
                 return age;
             }
         }
+    }
+
+    record Rec1(Integer code, TheRec theRec) {
     }
 
     public enum Rates {

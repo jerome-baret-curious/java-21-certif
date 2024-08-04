@@ -87,6 +87,24 @@ public class Sand {
             throw new RuntimeException(e);
         }
         forkJoin.shutdown();
+
+        threads(runnableTask);
+    }
+
+    static void threads(Runnable runnable) {
+        Thread daemonThread = Thread.ofPlatform().daemon().start(runnable);
+
+        Thread unstartedThread = Thread.ofPlatform().name("nameIt").unstarted(runnable);
+
+        // A ThreadFactory that creates daemon threads named "worker-0", "worker-1", ...
+        ThreadFactory factory = Thread.ofPlatform().daemon().name("worker-", 0).factory();
+        Thread worker0Thread = factory.newThread(runnable);
+        Thread worker1Thread = factory.newThread(runnable);
+
+        Thread thread = Thread.ofVirtual().start(runnable);
+        Thread same = Thread.startVirtualThread(runnable);
+
+        ThreadFactory factoryOfVirtual = Thread.ofVirtual().factory();
     }
 
     static void locks() {
