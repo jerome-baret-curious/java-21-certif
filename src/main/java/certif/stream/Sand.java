@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Sand {
+    // https://blogs.oracle.com/javamagazine/category/jm-quiz
     public static void main(String[] args) {
         // concurrent reduction : stream parallel, the collector is concurrent and the stream or the collector is unordered
         List<Integer> listOfNumbers = Arrays.asList(1, 2, 3, 4);

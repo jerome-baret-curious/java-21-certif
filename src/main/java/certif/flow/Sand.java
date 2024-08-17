@@ -3,7 +3,7 @@ package certif.flow;
 public class Sand {
     public enum Day {
         SUNDAY, MONDAY, TUESDAY,
-        WEDNESDAY, THURSDAY, FRIDAY, SATURDAY;
+        WEDNESDAY, THURSDAY, FRIDAY, SATURDAY
     }
 
     public static void main(String[] args) {
@@ -23,6 +23,14 @@ public class Sand {
             System.out.println("instance of PetiteFille " + pf);
             if (pf instanceof Fille f) {
                 System.out.println("instance of Fille " + f);
+            }
+        }
+
+        Object o = new PetiteFille();
+        if (o instanceof I1 i1) {
+            System.out.println("instance of I1 " + i1);
+            if (i1 instanceof I2 i2) {
+                System.out.println("instance of I2 " + i2);
             }
         }
 
@@ -139,14 +147,17 @@ public class Sand {
     }
 }
 
-class Mere {
+interface I1 {}
+interface I2 {}
+
+class Mere implements I1 {
     long code = (long) (Math.random() * 10);
     {
         System.out.println("code is " + code);
     }
 }
 
-class Fille extends Mere {
+class Fille extends Mere implements I2 {
 
 }
 

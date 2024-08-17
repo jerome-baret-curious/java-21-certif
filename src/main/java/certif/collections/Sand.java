@@ -4,11 +4,12 @@ import java.util.*;
 
 public class Sand {
     public static void main(String[] args) {
-        array();
-        List<String> list = list();
-        set(list);
-        deque(list);
-        map();
+//        array();
+//        List<String> list = list();
+//        set(list);
+//        deque(list);
+//        map();
+        concur();
     }
 
     public static void array() {
@@ -139,5 +140,12 @@ public class Sand {
         System.out.println(sequencedMap.pollFirstEntry());// fgf=zerzrz
         System.out.println(sequencedMap);//{ioio=ipoi, yrtfg=nbnv}
         //System.out.println(sequencedMap.putLast("uyt", "pom"));//throws UnsupportedOperationException
+    }
+
+    public static void concur() {
+        List<Integer> integers = List.of(1, 2, 3, 4, 5, 5, 5);
+        integers.parallelStream().distinct().forEach(System.out::println);// distinct is as expected, but order is not guaranteed
+        integers.parallelStream().distinct().forEachOrdered(System.out::println);// distinct is as expected, and order is guaranteed
+        integers.stream().unordered().forEachOrdered(System.out::println);// order is not guaranteed (forEachOrdered has encounter order if stream has)
     }
 }

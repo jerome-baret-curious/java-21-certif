@@ -36,6 +36,13 @@ public class Sand {
         var tientien = 0b01111111_11111111_11111111_11111111; //Integer.MAX_VALUE
         System.out.println(tientien);
 
+        System.out.println("+++" + a + " " + b); // a=1 b=-2
+        int d = a+++b;
+        System.out.println("+++" + d + " " + a + " " + b); // d=-1 a=2 b=-2
+
+        d = 5;
+        System.out.println("/" + d/b); // d/b=-2
+
         var anonObj = new Object() {
             String name = "Pomme";
             int total = 60;

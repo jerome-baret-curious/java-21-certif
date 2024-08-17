@@ -3,12 +3,13 @@ package certif.oop;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Sand {
+public sealed class Sand {
+    String lala = "lala";
     private int i = 0;
     private Inner inn;
     private StaticNest nest;
 
-    interface Hello {
+    interface Hello { // static would be redundant
         void coucou(String qqun);
 
         static int voyons() {
@@ -17,6 +18,9 @@ public class Sand {
     }
 
     public static void main(String[] args) {
+        new SSN().f();
+        PRaccess pRaccess = new PRaccess(null);
+        //System.out.println(pRaccess.h().getIt()); // not public
         System.out.println(LESNOMBRES.ZERO.ordinal()); // 0
         System.out.println(LESNOMBRES.valueOf("UNO")); // UNO
         Sand sand = new Sand();
@@ -114,6 +118,12 @@ public class Sand {
         }
     }
 
+    private non-sealed static class SSN extends Sand {// can't be permitted in Sand because private
+        private void f() {
+            System.out.println("SSN " + super.i);
+        }
+    }
+
     record TheRec(String name) {
         public TheRec { // compact constructor to avoid explicit assignment
             if (name.length() < 10) {
@@ -164,6 +174,13 @@ public class Sand {
     static <T extends Chanteur & Danseur> void showInter(T humain) {
         humain.chante();
         humain.danse();
+    }
+}
+
+class NoSand {
+    void test(Sand s) {
+        System.out.println(s.lala);
+        // no access to private members of s (not in top level Sand)
     }
 }
 
